@@ -29,3 +29,10 @@ To generate test coverage report
 ```sh
 npm run test:coverage
 ```
+
+Approach:
+
+- run npm install, then npm audit fix to fix the vulnerabilities
+- run the code in node and see what is happnening
+- comment existing code to see what it is doing
+
