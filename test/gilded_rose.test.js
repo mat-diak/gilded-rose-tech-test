@@ -60,5 +60,57 @@ describe('Shop', () => {
         });
       });
     });
+
+    describe('when Aged Brie', () => {
+      describe('when in date', () => {
+        it('descreases sellIn by 1 and increases quality by 1', () => {
+          const item = new Item('Aged Brie', 2, 0)
+          const shop = new Shop([item]);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(1)
+          expect(shop.items[0].sellIn).toEqual(1)
+        });
+
+        describe('when quality is 50', () => {
+          it('does not increase quality', () => {
+            const item = new Item('Aged Brie', 2, 50)
+            const shop = new Shop([item]);
+            shop.updateQuality();
+            expect(shop.items[0].quality).toEqual(50)
+            expect(shop.items[0].sellIn).toEqual(1)
+          });
+        });
+      });
+
+      describe('when out of date', () => {
+        it('increaes quality by 2', () => {
+          const item = new Item('Aged Brie', -3, 3)
+          const shop = new Shop([item]);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(5)
+          expect(shop.items[0].sellIn).toEqual(-4)
+        });
+
+        describe('when sellIn is 0', () => {
+          it('increases quality by 2', () => {
+            const item = new Item('Aged Brie', 0, 3)
+            const shop = new Shop([item]);
+            shop.updateQuality();
+            expect(shop.items[0].quality).toEqual(5)
+            expect(shop.items[0].sellIn).toEqual(-1)
+          });
+        });
+
+        describe('when quality is 50', () => {
+          it('does not increase quality', () => {
+            const item = new Item('Aged Brie', -5, 50)
+            const shop = new Shop([item]);
+            shop.updateQuality();
+            expect(shop.items[0].quality).toEqual(50)
+            expect(shop.items[0].sellIn).toEqual(-6)
+          });
+        });
+      });
+    });
   });
 });

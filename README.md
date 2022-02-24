@@ -43,19 +43,30 @@ Behaviuour:
 
   - Normal items: 
     - quality
-      in date:
-      - decreases by 1 everyday
+      - in date:
+        - decreases by 1 everyday
+      - out of date:
+        - decreaeses by 2
     - sellIn
-      in date:
       - decreases by 1 everyday
 
   - Aged Brie
     - quality
-      in date:
-      - increases by 1 everyday
+      - in date:
+        - increases by 1 everyday
+      - out of date
+        - increases by 2 everyday
     -sellIn
-      in date:
       - decreases by 1 everyday
+
+  - Sulfurus
+    -quality
+      N/A
+    -sellIn
+      N/A
+
+  - backstage pass
+    - quality up by 1
 
   
 
