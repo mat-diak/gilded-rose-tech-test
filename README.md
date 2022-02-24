@@ -36,3 +36,17 @@ Approach:
 - run the code in node and see what is happnening
 - comment existing code to see what it is doing
 
+Guidelines and legacy code interpretation:
+
+Types of items:
+
+- Normal items:
+  - quality
+    - decreases by 1 everyday
+  - sellIn
+    - decreases by 1 everyday
+
+Absolutes:
+
+- quality
+  - between 0 and 50 inclusive
