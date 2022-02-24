@@ -1,9 +1,23 @@
 const { Shop, Item } = require("../src/gilded_rose");
 
-describe("Gilded Rose", function () {
-  it("should foo", function () {
-    const gildedRose = new Shop([new Item("foo", 0, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("fixme");
+describe('Shop', () => {
+  describe('updateQuality', () => {
+    describe('when Sulfurus', () => {
+      it('stays the same', () => {
+        const item = new Item('Sulfuras, Hand of Ragnaros', 0, 80)
+        let shop = new Shop(item);
+        shop.updateQuality();
+        expect(item.quality).toEqual(80)
+        expect(item.sellIn).toEqual(0)
+      });
+
+      it('stays the same', () => {
+        const item = new Item('Sulfuras, Hand of Ragnaros', -1, 80)
+        let shop = new Shop(item);
+        shop.updateQuality();
+        expect(item.quality).toEqual(80)
+        expect(item.sellIn).toEqual(-1)
+      });
+    });
   });
 });
