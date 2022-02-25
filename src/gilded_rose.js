@@ -21,9 +21,8 @@ class Shop {
   }
 
   _updateItem(item) {
-    if (item.name === "Aged Brie") {
-      this._increaseQuality(item);
-    } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+    // Backstage pass
+    if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
       this._increaseQuality(item);
       if (item.sellIn < 11) {
         this._increaseQuality(item);
@@ -31,21 +30,24 @@ class Shop {
       if (item.sellIn < 6) {
         this._increaseQuality(item);
       }
+      if (item.sellIn <= 0) {
+        item.quality = 0
+      }
+
+    // Aged Brie
+    } else if (item.name === 'Aged Brie') {
+      this._increaseQuality(item);
+      if (item.sellIn <= 0) {
+        this._increaseQuality(item);
+      }
     } else {
       this._decreaseQuality(item);
-    }
-
-    if (item.sellIn <= 0) {
-      if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-        item.quality = 0;
-      } else if (item.name === "Aged Brie") {
-        this._increaseQuality(item);
-      } else {
+      if (item.sellIn <= 0) {
         this._decreaseQuality(item);
       }
     }
 
-    // updates sell in for all items except for
+    // updates sellIn for all items except for Sulfuras
     this._updateSellIn(this.items[0]);
   }
 
