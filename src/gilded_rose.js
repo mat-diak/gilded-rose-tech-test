@@ -18,92 +18,96 @@ class Shop {
   updateItems() {
     // for each item
     for (let i = 0; i < this.items.length; i++) {
-      // if item is not Brie and not a backstage pass
-      if (
-        this.items[i].name != "Aged Brie" &&
-        this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-      ) {
-        // and its quality is larger than 0
-        if (this.items[i].quality > 0) {
-          // and it is not sulfuras
-          if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-            // deduct one from quality
-            console.log(`${this.items[i].name} --- 1`);
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-        // this applies only to Aged Brie and Backstage passes
-      } else {
-        // if the item has quality less than 50
-        if (this.items[i].quality < 50) {
-          // add one to quality
-          console.log(`${this.items[i].name}  --- 2`);
-          this.items[i].quality = this.items[i].quality + 1;
-          // if item is backstage pass
-          if (
-            this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            // and items sellIn date is less than 11
-            if (this.items[i].sellIn < 11) {
-              // and it's quality is less than 50
-              if (this.items[i].quality < 50) {
-                // add one to item quality
-                console.log(`${this.items[i].name} --- 3`);
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            // and if the sellIn date is less than 6
-            if (this.items[i].sellIn < 6) {
-              // and the quality is less than 50
-              if (this.items[i].quality < 50) {
-                // add one to item quality
-                console.log(`${this.items[i].name} --- 4`);
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
+      this._updateItem(this.items[0])
+    }
+
+    return this.items;
+  }
+
+  _updateItem(item) {
+    // if item is not Brie and not a backstage pass
+    if (
+      item.name != "Aged Brie" &&
+      item.name != "Backstage passes to a TAFKAL80ETC concert"
+    ) {
+      // and its quality is larger than 0
+      if (item.quality > 0) {
+        // and it is not sulfuras
+        if (item.name != "Sulfuras, Hand of Ragnaros") {
+          // deduct one from quality
+          console.log(`${item.name} --- 1`);
+          item.quality = item.quality - 1;
         }
       }
-      
-      this._updateSellIn(this.items[0])
-
-      // if the sellIn is past
-      if (this.items[i].sellIn < 0) {
-        // and item is not Aged Brie
-        if (this.items[i].name != "Aged Brie") {
-          // and not a backstage pass to concert
-          if (
-            this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            // if the quality is more than 0
-            if (this.items[i].quality > 0) {
-              // if the item is not Sulfuras
-              if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-                // decrease quality by 1
-                console.log(`${this.items[i].name}  --- 6`);
-                this.items[i].quality = this.items[i].quality - 1;
-              }
+      // this applies only to Aged Brie and Backstage passes
+    } else {
+      // if the item has quality less than 50
+      if (item.quality < 50) {
+        // add one to quality
+        console.log(`${item.name}  --- 2`);
+        item.quality = item.quality + 1;
+        // if item is backstage pass
+        if (
+          item.name == "Backstage passes to a TAFKAL80ETC concert"
+        ) {
+          // and items sellIn date is less than 11
+          if (item.sellIn < 11) {
+            // and it's quality is less than 50
+            if (item.quality < 50) {
+              // add one to item quality
+              console.log(`${item.name} --- 3`);
+              item.quality = item.quality + 1;
             }
-            // else ?? if the item is a backstage pass pass
-          } else {
-            // set quality to 0
-            console.log(`${this.items[i].name} --- 7`);
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
           }
-          // else ?? if the item is 'Aged Brie'
-        } else {
-          // and the quality is less than 50
-          if (this.items[i].quality < 50) {
-            // add one to quality
-            console.log(`${this.items[i].name} --- 8`);
-            this.items[i].quality = this.items[i].quality + 1;
+          // and if the sellIn date is less than 6
+          if (item.sellIn < 6) {
+            // and the quality is less than 50
+            if (item.quality < 50) {
+              // add one to item quality
+              console.log(`${item.name} --- 4`);
+              item.quality = item.quality + 1;
+            }
           }
         }
       }
     }
+    
+    this._updateSellIn(this.items[0])
 
-    return this.items;
+    // if the sellIn is past
+    if (item.sellIn < 0) {
+      // and item is not Aged Brie
+      if (item.name != "Aged Brie") {
+        // and not a backstage pass to concert
+        if (
+          item.name != "Backstage passes to a TAFKAL80ETC concert"
+        ) {
+          // if the quality is more than 0
+          if (item.quality > 0) {
+            // if the item is not Sulfuras
+            if (item.name != "Sulfuras, Hand of Ragnaros") {
+              // decrease quality by 1
+              console.log(`${item.name}  --- 6`);
+              item.quality = item.quality - 1;
+            }
+          }
+          // else ?? if the item is a backstage pass pass
+        } else {
+          // set quality to 0
+          console.log(`${item.name} --- 7`);
+          item.quality =
+            item.quality - item.quality;
+        }
+        // else ?? if the item is 'Aged Brie'
+      } else {
+        // and the quality is less than 50
+        if (item.quality < 50) {
+          // add one to quality
+          console.log(`${item.name} --- 8`);
+          item.quality = item.quality + 1;
+        }
+      }
+    }
   }
 
   _updateSellIn(item) {
@@ -111,8 +115,6 @@ class Shop {
       item.sellIn--
     }
   }
-
-
 }
 
 module.exports = {
