@@ -9,6 +9,7 @@ class Item {
 class Shop {
   constructor(items = []) {
     this.items = items;
+    this.baseDelta = 1;
   }
 
   updateItems() {
@@ -20,32 +21,41 @@ class Shop {
 
   _updateItem(item) {
     if (!this._isSulfuras(item)) {
-      this._updateQuality(item)
-      this._updateSellIn(item)
+      this._updateQuality(item);
+      this._updateSellIn(item);
     }
   }
 
   _updateQuality(item) {
-    switch(item.name) {
+    switch (item.name) {
       case "Aged Brie":
-        (item.sellIn > 0) ?  this._increaseQuality(item, 1) : this._increaseQuality(item, 2)
+        item.sellIn > 0
+          ? this._increaseQuality(item, 1)
+          : this._increaseQuality(item, 2);
         break;
       case "Backstage passes to a TAFKAL80ETC concert":
         if (item.sellIn > 10) {
-          this._increaseQuality(item, 1)
+          this._increaseQuality(item, 1);
           break;
         } else if (item.sellIn > 5) {
-          this._increaseQuality(item, 2)
+          this._increaseQuality(item, 2);
           break;
         } else if (item.sellIn > 0) {
-          this._increaseQuality(item, 3)
+          this._increaseQuality(item, 3);
           break;
         } else {
-          this._decreaseQuality(item, item.quality)
+          this._decreaseQuality(item, item.quality);
           break;
         }
+      case "Conjured":
+        item.sellIn > 0
+          ? this._decreaseQuality(item, this.baseDelta*2)
+          : this._decreaseQuality(item, this.baseDelta*4);
+          break;
       default:
-        (item.sellIn > 0) ? this._decreaseQuality(item, 1) : this._decreaseQuality(item, 2)
+        item.sellIn > 0
+          ? this._decreaseQuality(item, this.baseDelta)
+          : this._decreaseQuality(item, this.baseDelta*2);
     }
   }
 

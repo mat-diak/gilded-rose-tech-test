@@ -268,5 +268,49 @@ describe("Shop", () => {
         });
       });
     });
+
+    describe('when Conjured', () => {
+      describe('when in date', () => {
+        it('decreases quality by 2 and sellIn by 1', () => {
+          const item = new Item(
+            "Conjured",
+            5,
+            30
+          );
+          const shop = new Shop([item]);
+          shop.updateItems();
+          expect(shop.items[0].quality).toEqual(28);
+          expect(shop.items[0].sellIn).toEqual(4);
+        });
+      });
+
+      describe('when out of date', () => {
+        it('decreases quality by 4 and sellIn by 1', () => {
+          const item = new Item(
+            "Conjured",
+            -5,
+            30
+          );
+          const shop = new Shop([item]);
+          shop.updateItems();
+          expect(shop.items[0].quality).toEqual(26);
+          expect(shop.items[0].sellIn).toEqual(-6);
+        });
+        
+        describe('when sellIn is 0', () => {
+          it('decreases quality by 4 and sellIn by 1', () => {
+            const item = new Item(
+              "Conjured",
+              0,
+              30
+            );
+            const shop = new Shop([item]);
+            shop.updateItems();
+            expect(shop.items[0].quality).toEqual(26);
+            expect(shop.items[0].sellIn).toEqual(-1);
+          });
+        });
+      });
+    });
   });
 });
