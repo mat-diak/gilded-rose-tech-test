@@ -73,7 +73,7 @@ describe("Shop", () => {
 
     describe("when Aged Brie", () => {
       describe("when in date", () => {
-        it("descreases sellIn by 1 and increases quality by 1", () => {
+        it("decreases sellIn by 1 and increases quality by 1", () => {
           const item = new Item("Aged Brie", 2, 0);
           const shop = new Shop([item]);
           shop.updateItems();
