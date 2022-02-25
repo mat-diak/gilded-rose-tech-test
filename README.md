@@ -43,42 +43,39 @@ Approach:
 - change updateQuality to updateItems
 - create new functions to serve each responsibility of legacy updateQuality function
 
-
 Guidelines and legacy code interpretation:
 
 Behaviuour:
 
-  - Normal items: 
-    - quality
-      - in date:
-        - decreases by 1 everyday
-      - out of date:
-        - decreaeses by 2
-    - sellIn
+- Normal items:
+
+  - quality
+    - in date:
       - decreases by 1 everyday
+    - out of date:
+      - decreaeses by 2
+  - sellIn
+    - decreases by 1 everyday
 
-  - Aged Brie
-    - quality
-      - in date:
-        - increases by 1 everyday
-      - out of date
-        - increases by 2 everyday
-    -sellIn
-      - decreases by 1 everyday
+- Aged Brie
 
-  - Sulfurus
-    -quality
-      N/A
-    -sellIn
-      N/A
+  - quality
+    - in date:
+      - increases by 1 everyday
+    - out of date - increases by 2 everyday
+      -sellIn
+    - decreases by 1 everyday
 
-  - backstage pass
-    - quality up by 1
+- Sulfurus
+  -quality
+  N/A
+  -sellIn
+  N/A
 
-  
+- backstage pass
+  - quality up by 1
 
 Absolutes:
-  - quality
-    - between 0 and 50 inclusive
 
-  
+- quality
+  - between 0 and 50 inclusive

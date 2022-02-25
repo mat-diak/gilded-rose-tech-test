@@ -28,16 +28,16 @@ class Shop {
           // and it is not sulfuras
           if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
             // deduct one from quality
-            console.log(`${this.items[i].name} --- 1`)
+            console.log(`${this.items[i].name} --- 1`);
             this.items[i].quality = this.items[i].quality - 1;
           }
         }
-      // this applies only to Aged Brie and Backstage passes
+        // this applies only to Aged Brie and Backstage passes
       } else {
         // if the item has quality less than 50
         if (this.items[i].quality < 50) {
           // add one to quality
-          console.log(`${this.items[i].name}  --- 2`)
+          console.log(`${this.items[i].name}  --- 2`);
           this.items[i].quality = this.items[i].quality + 1;
           // if item is backstage pass
           if (
@@ -48,7 +48,7 @@ class Shop {
               // and it's quality is less than 50
               if (this.items[i].quality < 50) {
                 // add one to item quality
-                console.log(`${this.items[i].name} --- 3`)
+                console.log(`${this.items[i].name} --- 3`);
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
@@ -57,20 +57,15 @@ class Shop {
               // and the quality is less than 50
               if (this.items[i].quality < 50) {
                 // add one to item quality
-                console.log(`${this.items[i].name} --- 4`)
+                console.log(`${this.items[i].name} --- 4`);
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
           }
         }
       }
-
-      // For all 
-      if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-        // deduct one from SellIn
-        console.log(`${this.items[i].name} --- 5`)
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
+      
+      this._updateSellIn(this.items[0])
 
       // if the sellIn is past
       if (this.items[i].sellIn < 0) {
@@ -85,31 +80,39 @@ class Shop {
               // if the item is not Sulfuras
               if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
                 // decrease quality by 1
-                console.log(`${this.items[i].name}  --- 6`)
+                console.log(`${this.items[i].name}  --- 6`);
                 this.items[i].quality = this.items[i].quality - 1;
               }
             }
             // else ?? if the item is a backstage pass pass
           } else {
             // set quality to 0
-            console.log(`${this.items[i].name} --- 7`)
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            console.log(`${this.items[i].name} --- 7`);
+            this.items[i].quality =
+              this.items[i].quality - this.items[i].quality;
           }
           // else ?? if the item is 'Aged Brie'
         } else {
           // and the quality is less than 50
           if (this.items[i].quality < 50) {
             // add one to quality
-            console.log(`${this.items[i].name} --- 8`)
+            console.log(`${this.items[i].name} --- 8`);
             this.items[i].quality = this.items[i].quality + 1;
           }
         }
       }
     }
-    
-    
-      return this.items;
+
+    return this.items;
   }
+
+  _updateSellIn(item) {
+     if (item.name != "Sulfuras, Hand of Ragnaros") {
+      item.sellIn--
+    }
+  }
+
+
 }
 
 module.exports = {
