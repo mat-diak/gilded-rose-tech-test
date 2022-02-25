@@ -15,7 +15,7 @@ class Shop {
     this.items = items;
   }
 
-  updateQuality() {
+  updateItems() {
     // for each item
     for (let i = 0; i < this.items.length; i++) {
       // if item is not Brie and not a backstage pass
@@ -106,8 +106,9 @@ class Shop {
         }
       }
     }
-
-    return this.items;
+    
+    
+      return this.items;
   }
 }
 
